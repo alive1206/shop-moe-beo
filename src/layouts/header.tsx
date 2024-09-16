@@ -1,8 +1,7 @@
 import { map } from "lodash";
-import { Search } from "lucide-react";
+import { Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
-
-type Props = {};
+import { usePathname } from "next/navigation";
 
 const menu = [
   {
@@ -27,12 +26,14 @@ const menu = [
   },
 ];
 
-export const Header: React.FC<Props> = () => {
+export const Header: React.FC = () => {
+  const pathname = usePathname();
+  const activeMenu = menu.find((item) => item.href === pathname);
   return (
-    <>
+    <div>
       <div className="container">
-        <div className="flex justify-between items-center mt-6">
-          <div className="w-[50px] aspect-square relative">
+        <div className="flex justify-between items-center">
+          <div className="w-[75px] aspect-square relative">
             <img
               src="/brand.jpg"
               alt="Logo-brand"
@@ -40,24 +41,32 @@ export const Header: React.FC<Props> = () => {
             />
           </div>
           <nav>
-            <ul className="list-none flex gap-6 justify-center">
-              {map(menu, (item) => (
-                <li key={item.label}>
-                  <Link
-                    className="no-underline text-primary font-medium"
-                    href={item.href}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+            <ul className="list-none flex gap-16 justify-center">
+              {map(menu, (item) => {
+                return (
+                  <li key={item.label}>
+                    <Link
+                      className={`no-underline font-medium ${
+                        item.label === activeMenu?.label
+                          ? "text-[#e5938e] active"
+                          : "text-primary"
+                      }`}
+                      href={item.href}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
-          <div>
-            <Search />
+          <div className="flex gap-6">
+            <Search className="cursor-pointer" />
+            <User className="cursor-pointer" />
+            <ShoppingCart className="cursor-pointer" />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
