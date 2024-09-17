@@ -12,9 +12,14 @@ const config: Config = {
         foreground: "var(--foreground)",
         primary: "#083448",
         accent: "#6fc2c0",
+        secondary: "#e5938e",
+        teriary: "#f1f1f1",
       },
       container: {
         center: true,
+      },
+      flex: {
+        "2": "2 1 0%",
       },
     },
   },

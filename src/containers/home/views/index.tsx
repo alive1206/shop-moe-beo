@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Album } from "../components/album";
 
 export const Home: React.FC = () => {
@@ -12,7 +13,7 @@ export const Home: React.FC = () => {
             <p className="mt-3 mb-3 max-[768px]:text-sm">
               Explore the shop for more gift ideas.
             </p>
-            <button className="bg-primary py-[10px] px-4 text-white rounded-[3px] cursor-pointer uppercase text-xs font-semibold">
+            <button className="bg-primary py-[10px] px-4 text-white rounded-[3px] cursor-pointer uppercase text-xs font-semibold hover:bg-secondary transition-all duration-300">
               Shop now
             </button>
           </div>
@@ -29,7 +30,20 @@ export const Home: React.FC = () => {
             />
           </div>
         </div>
-        <Album />
+        <div className="py-6">
+          <h3 className="mb-6 text-3xl pl-2 border-l-[3px] border-accent">
+            Featured Patterns
+          </h3>
+          <Album />
+          <div className="flex justify-center mt-6">
+            <Link
+              href={"/products"}
+              className="no-underline px-[25px] py-[5px] rounded-[25px] text-white bg-secondary hover:brightness-[85%] transition-all duration-300"
+            >
+              View All
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

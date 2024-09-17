@@ -1,5 +1,10 @@
+import {
+  SearchOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { map } from "lodash";
-import { Search, ShoppingCart, User } from "lucide-react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -30,9 +35,9 @@ export const Header: React.FC = () => {
   const pathname = usePathname();
   const activeMenu = menu.find((item) => item.href === pathname);
   return (
-    <div>
+    <div className="header-wrapper px-3">
       <div className="container">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center py-3">
           <div className="w-[75px] aspect-square relative">
             <img
               src="/brand.jpg"
@@ -40,7 +45,7 @@ export const Header: React.FC = () => {
               className="rounded-[50%] object-cover cursor-pointer w-full absolute"
             />
           </div>
-          <nav>
+          <nav className="max-[768px]:hidden">
             <ul className="list-none flex gap-16 justify-center">
               {map(menu, (item) => {
                 return (
@@ -48,7 +53,7 @@ export const Header: React.FC = () => {
                     <Link
                       className={`no-underline font-medium ${
                         item.label === activeMenu?.label
-                          ? "text-[#e5938e] active"
+                          ? "text-secondary active"
                           : "text-primary"
                       }`}
                       href={item.href}
@@ -61,9 +66,9 @@ export const Header: React.FC = () => {
             </ul>
           </nav>
           <div className="flex gap-6">
-            <Search className="cursor-pointer" />
-            <User className="cursor-pointer" />
-            <ShoppingCart className="cursor-pointer" />
+            <SearchOutlined className="cursor-pointer text-xl" />
+            <UserOutlined className="cursor-pointer text-xl" />
+            <ShoppingCartOutlined className="cursor-pointer text-xl" />
           </div>
         </div>
       </div>
